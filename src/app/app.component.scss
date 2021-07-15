@@ -1,0 +1,12 @@
+.main-page {
+	h1 {
+		font-weight: normal;
+		text-align: center;
+	}
+	.btn-container {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(50px, 100px));
+		grid-column-gap: 12px;
+		justify-content: center;
+	}
+}
