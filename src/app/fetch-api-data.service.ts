@@ -39,7 +39,7 @@ export class UserRegistrationService {
 	}
 }
 
-// User Login
+// User login
 @Injectable({
 	providedIn: 'root',
 })

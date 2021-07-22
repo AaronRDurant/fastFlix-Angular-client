@@ -1,13 +1,23 @@
-<div class="main-page">
-	<h1>Welcome to fastFlix! 🏁🏎</h1>
-	<button
-		mat-raised-button
-		(click)="openUserRegistrationDialog()"
-		color="primary"
-	>
-		Sign up
-	</button>
-	<button mat-raised-button (click)="openUserLoginDialog()" color="primary">
-		Log in
-	</button>
+<div class="welcome__container">
+  <div class="welcome__title">
+    <h1>Welcome to <span class="navbar__brand">fastFlix</span>! 🏁🏎</h1>
+  </div>
+  <div class="btn-container">
+  	<button class="btn-container__signup"
+  		mat-raised-button
+  		(click)="openUserRegistrationDialog()"
+  		color="primary"
+      aria-label="Sign-up button"
+  	>
+  		Sign up
+  	</button>
+    <button
+      mat-raised-button
+      (click)="openUserLoginDialog()"
+      color="primary"
+      aria-label="Login button"
+    >
+  		Log in
+  	</button>
+  </div>
 </div>
