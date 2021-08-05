@@ -1,6 +1,20 @@
-<mat-toolbar color="primary" class="navbar" role="heading">
-  <mat-toolbar-row class="navbar__row">
-    <span class="navbar__brand">fastFlix</span>
+<mat-toolbar color='primary' class='navbar' role='heading'>
+  <mat-toolbar-row class='navbar__row'>
+    <span class='navbar__brand'>fastFlix</span>
   </mat-toolbar-row>
 </mat-toolbar>
+
+<!-- Appears after successful login -->
+<div *ngIf='isAuth()'>
+  <mat-toolbar class='sub-navbar' role='heading'>
+    <mat-toolbar-row class='sub-navbar__row'>
+      <button mat-raised-button color='primary' (click)='openProfile()'>
+        Profile
+      </button>
+      <button mat-raised-button color='primary' (click)='onLogout()'>
+        Logout
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
 <router-outlet></router-outlet>

@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-// API call for registering new user
-import { UserRegistrationService } from '../fetch-api-data.service';
-// Displays notification to user
-import { MatSnackBar } from '@angular/material/snack-bar';
+// Service containing backend logic
+import { FetchApiDataService } from '../fetch-api-data.service';
+
 // Closes dialog after success
 import { MatDialogRef } from '@angular/material/dialog';
+// Displays notification to user
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-user-registration-form',
@@ -16,7 +17,7 @@ export class UserRegistrationFormComponent implements OnInit {
 	@Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
 	constructor(
-		public fetchApiData: UserRegistrationService,
+		public fetchApiData: FetchApiDataService,
 		public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
 		public snackBar: MatSnackBar
 	) {}
@@ -25,21 +26,19 @@ export class UserRegistrationFormComponent implements OnInit {
 
 	// Sends form inputs to backend
 	registerUser(): void {
-		this.fetchApiData.userRegistration(this.userData).subscribe(
-			(response) => {
-				// Logic for successful user registration will go here
-				this.dialogRef.close(); // Will eventually close the modal on success
-				console.log(response);
-				this.snackBar.open(response, 'OK', {
-					duration: 2000,
-				});
-			},
-			(response) => {
-				console.log(response);
-				this.snackBar.open(response, 'OK', {
-					duration: 2000,
-				});
-			}
-		);
-	}
+		this.fetchApiData.createAccount(this.userData).subscribe(
+      (response) => {
+        // Logic for successful registration
+        this.dialogRef.close(); // Closes dialog on success
+        this.snackBar.open(response, 'OK', {
+          duration: 2000,
+        });
+      },
+      (response) => {
+        this.snackBar.open(response, 'OK', {
+          duration: 2000,
+        });
+      }
+    );
+  }
 }

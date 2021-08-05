@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { GetMoviesService } from '../fetch-api-data.service';
+import { Router } from '@angular/router';
+
+// Service containing backend logic
+import { FetchApiDataService } from '../fetch-api-data.service';
+
+// Material
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-movie-card',
@@ -11,8 +15,9 @@ import { Router } from '@angular/router';
 })
 export class MovieCardComponent {
 	movies: any[] = [];
+
 	constructor(
-		public fetchApiData: GetMoviesService,
+		public fetchApiData: FetchApiDataService,
 		public dialog: MatDialog,
 		public snackBar: MatSnackBar,
 		private router: Router
@@ -22,11 +27,21 @@ export class MovieCardComponent {
 		this.getMovies();
 	}
 
-	getMovies(): void {
-		this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-			this.movies = resp;
-			console.log(this.movies);
-			return this.movies;
-		});
-	}
+  // Get all movies
+  getMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      this.movies = resp;
+      return this.movies;
+    });
+  }
+
+  // Add movie to favorites
+  onAddFavoriteMovie(id: string): void {
+    this.fetchApiData.addFavorite(id).subscribe((response: any) => {
+      console.log(response);
+      this.snackBar.open('Added to favorites!', 'OK', {
+        duration: 2000,
+      });
+    });
+  }
 }
