@@ -14,7 +14,19 @@
      >
        Genre
      </button>
-      <button mat-button color="accent">Director</button>
+      <button
+       mat-button
+       color="accent"
+       (click)="
+         openDirectorDialog(
+           movie.Director.Name,
+           movie.Director.Bio,
+           movie.Director.Birth
+         )
+       "
+     >
+       Director
+     </button>
       <button mat-button color="accent">Synopsis</button>
       <!-- <button mat-icon-button aria-label="Favorite button">
         <mat-icon color="warn">star-border</mat-icon>

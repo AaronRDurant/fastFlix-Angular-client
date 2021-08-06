@@ -1,13 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 
 // Service containing backend logic
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 // Closes dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
+
 // Displays notifications
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+// Routing
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login-form',
@@ -15,6 +18,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-login-form.component.scss'],
 })
 export class UserLoginFormComponent implements OnInit {
+  isLoading = false;
+
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
@@ -28,9 +33,11 @@ export class UserLoginFormComponent implements OnInit {
 
   // Sends form inputs to backend
   userLogin(): void {
+    this.isLoading = true;
     this.fetchApiData.login(this.userData).subscribe(
       (response) => {
         this.fetchApiData.setAuth(); // sets isAuthenticated to true
+        this.isLoading = false;
         this.dialogRef.close(); // Closes modal on success
         localStorage.setItem('user', response.user.Username);
         localStorage.setItem('token', response.token);
@@ -40,6 +47,7 @@ export class UserLoginFormComponent implements OnInit {
         this.router.navigate(['movies']);
       },
       (response) => {
+        this.isLoading = false;
         this.snackBar.open(response, 'OK', {
           duration: 2000,
         });

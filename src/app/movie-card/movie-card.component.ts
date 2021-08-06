@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 // Components
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
+import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -30,7 +31,7 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
-  // Get all movies
+  // Gets all movies from API
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -38,7 +39,14 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  // Opens modal with movie genre information
+  // Opens modal with director info
+  openDirectorDialog(name: string, bio: string, birth: string): void {
+    this.dialog.open(MovieDirectorComponent, {
+      data: { name, bio, birth },
+    });
+  }
+
+  // Opens modal with genre info
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(MovieGenreComponent, {
       data: { name, description },

@@ -4,6 +4,12 @@
 	</mat-card-header>
 
   <mat-card-content>
+    <mat-spinner
+    *ngIf="isLoading"
+    class="login__spinner"
+    color="primary"
+    diameter="35"
+  ></mat-spinner>
     <form>
       <mat-form-field>
         <input
