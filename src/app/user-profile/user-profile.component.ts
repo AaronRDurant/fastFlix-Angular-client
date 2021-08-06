@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RemoveAccountComponent } from '../remove-account/remove-account.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userData = { username: '', password: '', email: '', birthday: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -21,27 +22,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  editUserData(): void {
-    this.fetchApiData.editAccount(this.userData).subscribe(
-      (result) => {
-        localStorage.setItem('user', result.username);
-        this.snackBar.open('Update successful!', 'OK', {
-          duration: 5000,
-        });
-        setTimeout(
-          () =>
-            this.router.navigate(['user']).then(() => {
-              window.location.reload();
-            }),
-          1500
-        );
-      },
-      (result) => {
-        console.log(result);
-        this.snackBar.open(result, 'OK', {
-          duration: 5000,
-        });
-      }
-    );
+  editUserData(): void {}
+
+  removeAccount(): void {
+    this.dialog.open(RemoveAccountComponent);
   }
 }
