@@ -11,45 +11,53 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // Components
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
+import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss'],
+	selector: 'app-movie-card',
+	templateUrl: './movie-card.component.html',
+	styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent implements OnInit {
-  movies: any[] = [];
+	movies: any[] = [];
 
-  constructor(
-    public fetchApiData: FetchApiDataService,
-    public dialog: MatDialog,
-    public snackBar: MatSnackBar,
-    private router: Router
-  ) {}
+	constructor(
+		public fetchApiData: FetchApiDataService,
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar,
+		private router: Router
+	) {}
 
-  ngOnInit(): void {
-    this.getMovies();
-  }
+	ngOnInit(): void {
+		this.getMovies();
+	}
 
-  // Gets all movies from API
-  getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      return this.movies;
-    });
-  }
+	// Gets all movies from API
+	getMovies(): void {
+		this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+			this.movies = resp;
+			return this.movies;
+		});
+	}
 
-  // Opens modal with director info
-  openDirectorDialog(name: string, bio: string, birth: string): void {
-    this.dialog.open(MovieDirectorComponent, {
-      data: { name, bio, birth },
-    });
-  }
+	// Opens modal with director info
+	openDirectorDialog(name: string, bio: string, birth: string): void {
+		this.dialog.open(MovieDirectorComponent, {
+			data: { name, bio, birth },
+		});
+	}
 
-  // Opens modal with genre info
-  openGenreDialog(name: string, description: string): void {
-    this.dialog.open(MovieGenreComponent, {
-      data: { name, description },
-    });
-  }
+	// Opens modal with genre info
+	openGenreDialog(name: string, description: string): void {
+		this.dialog.open(MovieGenreComponent, {
+			data: { name, description },
+		});
+	}
+
+	// Opens modal with synopsis info
+ 	openSynopsisDialog(synopsis: string): void {
+ 		this.dialog.open(MovieSynopsisComponent, {
+ 			data: { synopsis },
+ 		});
+ 	}
 }

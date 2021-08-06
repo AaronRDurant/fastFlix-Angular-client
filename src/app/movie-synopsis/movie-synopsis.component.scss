@@ -1,0 +1,26 @@
+.synopsis__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.synopsis__content {
+  line-height: 1.6;
+  max-height: 300px;
+  padding: 16px 40px 8px 40px;
+  overflow-y: auto;
+}
+
+// Tablet
+@media all and (min-width: 768px) {
+  .synopsis__container {
+    max-width: 400px;
+  }
+}
+
+// Desktop
+@media all and (min-width: 768px) {
+  .synopsis__container {
+    max-width: 600px;
+  }
+}
