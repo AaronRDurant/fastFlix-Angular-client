@@ -17,7 +17,7 @@ export class AppComponent {
 		private router: Router
 	) {}
 
-	// Handles conditional rendering of sub-nav bar
+	// Handles conditional rendering
 	isAuth() {
 		if (localStorage.getItem('token') !== null) {
 			return true;
@@ -32,8 +32,21 @@ export class AppComponent {
 		this.router.navigate(['/welcome']);
 	}
 
-	// Navigates user to profile-view
+	// Navigates to profile
 	openProfile(): void {
 		this.router.navigate(['/profile']);
+	}
+
+	// Logo links to either movies or welcome page
+	backToMain(): void {
+		if (localStorage.getItem('token') !== null) {
+			this.router.navigate(['/movies']);
+		} else {
+			this.router.navigate(['/welcome']);
+		}
+	}
+
+	toMovies(): void {
+		this.router.navigate(['/movies']);
 	}
 }

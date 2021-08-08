@@ -1,20 +1,48 @@
-<mat-toolbar color='primary' class='navbar' role='heading'>
-  <mat-toolbar-row class='navbar__row'>
-    <span class='navbar__brand'>fastFlix</span>
-  </mat-toolbar-row>
+<mat-toolbar color="primary" class="navbar" role="heading">
+	<mat-toolbar-row class="navbar__row">
+		<span
+			class="navbar__brand"
+			aria-label="Button that takes user back to main page"
+			(click)="backToMain()"
+			>fastFlix
+		</span>
+		<div class="navbar-icons__container">
+			<span *ngIf="isAuth()">
+				<button
+					mat-icon-button
+					[matMenuTriggerFor]="menu"
+					aria-label="Opens menu with links to profile or logout"
+					>
+					<mat-icon>more_horiz</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button
+						mat-menu-item
+						(click)="toMovies()"
+						aria-label="button that takes user to movies page"
+						>
+						<mat-icon>local_movies</mat-icon>
+						<span>Movies</span>
+					</button>
+					<button
+						(click)="openProfile()"
+						mat-menu-item
+						aria-label="button that takes user to profile page"
+						>
+						<mat-icon>person</mat-icon>
+						<span>Profile</span>
+					</button>
+					<button
+						mat-menu-item
+						(click)="onLogout()"
+						aria-label="button that logs user out"
+						>
+						<mat-icon>remove_circle_outline</mat-icon>
+						<span>Log out</span>
+					</button>
+				</mat-menu>
+			</span>
+		</div>
+	</mat-toolbar-row>
 </mat-toolbar>
-
-<!-- Appears after successful login -->
-<div *ngIf='isAuth()'>
-  <mat-toolbar class='sub-navbar' role='heading'>
-    <mat-toolbar-row class='sub-navbar__row'>
-      <button mat-raised-button color='primary' (click)='openProfile()'>
-        Profile
-      </button>
-      <button mat-raised-button color='primary' (click)='onLogout()'>
-        Logout
-      </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-</div>
 <router-outlet></router-outlet>

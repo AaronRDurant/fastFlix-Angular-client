@@ -27,11 +27,11 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { MovieSynopsisComponent } from './movie-synopsis/movie-synopsis.component';
+import { MovieDirectorComponent } from './movie-director/movie-director.component';
+import { MovieGenreComponent } from './movie-genre/movie-genre.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RemoveAccountComponent } from './remove-account/remove-account.component';
-import { MovieGenreComponent } from './movie-genre/movie-genre.component';
-import { MovieDirectorComponent } from './movie-director/movie-director.component';
-import { MovieSynopsisComponent } from './movie-synopsis/movie-synopsis.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -46,13 +46,13 @@ const appRoutes: Routes = [
     AppComponent,
     UserRegistrationFormComponent,
     UserLoginFormComponent,
+    UserProfileComponent,
     MovieCardComponent,
     WelcomePageComponent,
-    UserProfileComponent,
-    RemoveAccountComponent,
-    MovieGenreComponent,
-    MovieDirectorComponent,
     MovieSynopsisComponent,
+    MovieDirectorComponent,
+    MovieGenreComponent,
+    RemoveAccountComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
