@@ -20,6 +20,12 @@ export class UserProfileComponent implements OnInit {
   favoriteMovies: any[] = [];
   movies: any[] = [];
 
+  /**
+   * @param fetchApiData
+   * @param dialog
+   * @param snackBar
+   * @param router
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -31,6 +37,9 @@ export class UserProfileComponent implements OnInit {
     this.getFavoriteMovies();
   }
 
+  /**
+   * Handles form submission when user edits account information
+   */
   editUserData(): void {
     this.fetchApiData.editAccount(this.userData).subscribe(
       (result) => {
@@ -40,9 +49,9 @@ export class UserProfileComponent implements OnInit {
         });
         setTimeout(
           () =>
-          this.router.navigate(['user']).then(() => {
-            window.location.reload();
-          }),
+            this.router.navigate(['user']).then(() => {
+              window.location.reload();
+            }),
           1500
         );
       },
@@ -55,11 +64,16 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  /**
+   * Opens dialog for deleting account
+   */
   removeAccount(): void {
     this.dialog.open(RemoveAccountComponent);
   }
 
-  // Gets all movies for referencing favoriteMovieIDs
+  /**
+   * Gets all movies for referencing favoriteMovieIds
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -71,18 +85,24 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Gets user's favorite movies
+  /**
+   * Gets user's favorite movies
+   */
   getFavoriteMovies(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser(user).subscribe((response: any) => {
-      this.favoriteMovieIds = response[0].FavoriteMovies;
+      this.favoriteMovieIds = response[0].favoriteMovies;
     });
     setTimeout(() => {
       this.getMovies();
     }, 100);
   }
 
-  // Adds or removes movie from user's favorites
+  /**
+   * Adds or removes movie from user's list of favorites
+   * @param id
+   * @returns
+   */
   onToggleFavoriteMovie(id: string): any {
     if (this.favoriteMovieIds.includes(id)) {
       this.fetchApiData.removeFavorite(id).subscribe((resp: any) => {
@@ -102,21 +122,33 @@ export class UserProfileComponent implements OnInit {
     return this.favoriteMovieIds.push(id);
   }
 
-  // Opens synopsis modal
+  /**
+   * Opens modal with movie synopsis information
+   * @param synopsis
+   */
   openSynopsisDialog(synopsis: string): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: { synopsis },
     });
   }
 
-  // Opens director modal
+  /**
+   * Opens modal with movie director information
+   * @param name
+   * @param bio
+   * @param birth
+   */
   openDirectorDialog(name: string, bio: string, birth: string): void {
     this.dialog.open(MovieDirectorComponent, {
       data: { name, bio, birth },
     });
   }
 
-  // Opens genre modal
+  /**
+   * Opens modal with movie genre information
+   * @param name
+   * @param description
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(MovieGenreComponent, {
       data: { name, description },

@@ -8,7 +8,7 @@
   max-width: 1350px;
   display: flex;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 20px;
 }
 
 .navbar-icons__container {
@@ -16,13 +16,23 @@
   align-items: center;
 }
 
-.sub-navbar__row {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.footer-divider {
+  max-width: 891px;
+  margin: auto;
+}
 
-  button {
-    width: 75px;
-    margin: 0 16px;
-  }
+footer {
+  bottom: 0;
+}
+
+.footer-text {
+  padding: 8px 0 36px 0;
+  text-align: center;
+}
+
+.avatar {
+  display: inline;
+  vertical-align: middle;
+  width: 25px;
+  padding-bottom: 6px;
 }

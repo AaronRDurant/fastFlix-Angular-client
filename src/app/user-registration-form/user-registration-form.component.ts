@@ -1,12 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-// Service containing backend logic
 import { FetchApiDataService } from '../fetch-api-data.service';
-
-// Closes dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
-
-// Displays notifications
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -19,6 +13,12 @@ export class UserRegistrationFormComponent implements OnInit {
 
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
+  /**
+   *
+   * @param fetchApiData
+   * @param dialogRef
+   * @param snackBar
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
@@ -27,13 +27,15 @@ export class UserRegistrationFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // Sends form inputs to backend
+  /**
+   * Contacts API to register new account
+   */
   registerUser(): void {
     this.isLoading = true;
     this.fetchApiData.createAccount(this.userData).subscribe(
       (response) => {
         this.isLoading = false;
-        this.dialogRef.close(); // Closes modal on success
+        this.dialogRef.close();
         this.snackBar.open(response, 'OK', {
           duration: 2000,
         });

@@ -4,6 +4,10 @@ h2,
 	text-align: center;
 }
 
+.profile__container {
+  padding-bottom: 48px;
+}
+
 .update__container {
 	margin: 24px auto;
 	width: 280px;
@@ -25,16 +29,17 @@ h2,
 }
 
 .favorite-movies__container {
-	padding: 0 24px;
-	margin: 0 auto;
-	margin-top: 40px;
-	max-width: 1350px;
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-	gap: 16px;
-	align-items: stretch;
-	grid-auto-rows: 500px;
-	grid-auto-flow: dense;
+  padding: 0 24px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding-bottom: 48px;
+  max-width: 1350px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+  grid-auto-rows: 500px;
+  grid-auto-flow: dense;
 }
 
 .favoriteMovie-card__header {
@@ -44,9 +49,10 @@ h2,
 
 .favoriteMovie-card__container {
 	padding: 32px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
 	img {
 		border-radius: 5px;

@@ -1,15 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-// Service containing backend logic
 import { FetchApiDataService } from '../fetch-api-data.service';
-
-// Closes dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
-
-// Displays notifications
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-// Routing
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,6 +14,13 @@ export class UserLoginFormComponent implements OnInit {
 
   @Input() userData = { Username: '', Password: '' };
 
+  /**
+   *
+   * @param fetchApiData
+   * @param dialogRef
+   * @param snackBar
+   * @param router
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -31,14 +30,16 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // Sends form inputs to backend
+  /**
+   * Sends form inputs to backend
+   */
   userLogin(): void {
     this.isLoading = true;
     this.fetchApiData.login(this.userData).subscribe(
       (response) => {
-        this.fetchApiData.setAuth(); // sets isAuthenticated to true
+        this.fetchApiData.setAuth();
         this.isLoading = false;
-        this.dialogRef.close(); // Closes modal on success
+        this.dialogRef.close();
         localStorage.setItem('user', response.user.Username);
         localStorage.setItem('token', response.token);
         this.snackBar.open('User logged in successfully!', 'OK', {

@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 
 // Components
 import { AppComponent } from './app.component';
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatMenuModule,
     MatTooltipModule,
+    MatDividerModule,
     FormsModule,
     ReactiveFormsModule,
   ],
