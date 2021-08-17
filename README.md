@@ -1,4 +1,10 @@
-# FastFlixAngularClient
+# fastFlix-Angular-client
+
+Sourcing data from the fastFlix-backend REST API, this application was built using Angular. Similar to its React-based counterpart, it allows users to create an account to view some of the most popular racing-themed movies in history and add them to their personal list of favorites.
+
+Angular Material was used for this MEAN (MongoDB, Angular, Express.js, Node.js) stack app.
+
+## Angular Details
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
