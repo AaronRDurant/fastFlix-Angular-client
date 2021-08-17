@@ -23,7 +23,7 @@ export class FetchApiDataService {
 	* @param http
 	* @param router
 	*/
-	constructor(private http: HttpClient, private router: Router) {}
+	constructor(private http: HttpClient, private router: Router) { }
 
 	/**
 	* @returns {string} the token from local storage
@@ -72,8 +72,8 @@ export class FetchApiDataService {
 	login(userDetails: any): Observable<any> {
 		this.isAuthenticated = true;
 		return this.http
-		.post(apiUrl + 'login', userDetails)
-		.pipe(catchError(this.handleError));
+			.post(apiUrl + 'login', userDetails)
+			.pipe(catchError(this.handleError));
 	}
 
 	/**
@@ -84,12 +84,12 @@ export class FetchApiDataService {
 	getUser(user: any): Observable<any> {
 		const token = localStorage.getItem('token');
 		return this.http
-		.get(apiUrl + `users/${user}`, {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.get(apiUrl + `users/${user}`, {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
@@ -100,8 +100,8 @@ export class FetchApiDataService {
 	createAccount(userDetails: any): Observable<any> {
 		console.log(userDetails);
 		return this.http
-		.post(apiUrl + 'users', userDetails)
-		.pipe(catchError(this.handleError));
+			.post(apiUrl + 'users', userDetails)
+			.pipe(catchError(this.handleError));
 	}
 
 	/**
@@ -113,12 +113,12 @@ export class FetchApiDataService {
 		const user = localStorage.getItem('user');
 		const token = localStorage.getItem('token');
 		return this.http
-		.put(apiUrl + `users/${user}`, userDetails, {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.put(apiUrl + `users/${user}`, userDetails, {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
@@ -129,12 +129,12 @@ export class FetchApiDataService {
 		const user = localStorage.getItem('user');
 		const token = localStorage.getItem('token');
 		return this.http
-		.delete(apiUrl + `users/${user}`, {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.delete(apiUrl + `users/${user}`, {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
@@ -144,12 +144,12 @@ export class FetchApiDataService {
 	getAllMovies(): Observable<any> {
 		const token = localStorage.getItem('token');
 		return this.http
-		.get(apiUrl + 'movies', {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.get(apiUrl + 'movies', {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 
@@ -160,12 +160,12 @@ export class FetchApiDataService {
 	getSingleMovie(): Observable<any> {
 		const token = localStorage.getItem('token');
 		return this.http
-		.get(apiUrl + 'movies/:MovieID', {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.get(apiUrl + 'movies/:MovieID', {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
@@ -175,12 +175,12 @@ export class FetchApiDataService {
 	getDirector(): Observable<any> {
 		const token = localStorage.getItem('token');
 		return this.http
-		.get(apiUrl + 'movies/directors/:Director', {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.get(apiUrl + 'movies/directors/:Director', {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
@@ -190,12 +190,12 @@ export class FetchApiDataService {
 	getGenre(): Observable<any> {
 		const token = localStorage.getItem('token');
 		return this.http
-		.get(apiUrl + 'movies/genres/Genre', {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.get(apiUrl + 'movies/genres/Genre', {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
@@ -207,12 +207,12 @@ export class FetchApiDataService {
 		const token = localStorage.getItem('token');
 		const username = localStorage.getItem('user');
 		return this.http
-		.post(apiUrl + `users/${username}/${id}`, id, {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.post(apiUrl + `users/${username}/favorites/${id}`, id, {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
@@ -224,12 +224,12 @@ export class FetchApiDataService {
 		const token = localStorage.getItem('token');
 		const username = localStorage.getItem('user');
 		return this.http
-		.delete(apiUrl + `users/${username}/${id}`, {
-			headers: new HttpHeaders({
-				Authorization: 'Bearer ' + token,
-			}),
-		})
-		.pipe(map(this.extractResponseData), catchError(this.handleError));
+			.delete(apiUrl + `users/${username}/favorites/${id}`, {
+				headers: new HttpHeaders({
+					Authorization: 'Bearer ' + token,
+				}),
+			})
+			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
 
 	/**
